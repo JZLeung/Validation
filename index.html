@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Validation小插件</title>
+	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+	<script src="validate.js"></script>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>姓名：</td>
+			<td><input type="text" id="name" data-tip="#tip1"></td>
+			<td><span id="tip1"></span></td>
+			<td><span class=""></span></td>
+		</tr>
+		<tr>
+			<td>手机号：</td>
+			<td><input type="text" id="phone" data-tip="#tip2"></td>
+			<td><span id="tip2"></span></td>
+			<td><span class=""></span></td>
+		</tr>
+		<tr>
+			<td>Email：</td>
+			<td><input type="text" id="email" data-tip="#tip3"></td>
+			<td><span id="tip3"></span></td>
+			<td><span class=""></span></td>
+		</tr>
+		<tr>
+			<td>日期：</td>
+			<td><input type="text" id="date" data-tip="#tip4"></td>
+			<td><span id="tip4"></span></td>
+			<td><span class=""></span></td>
+		</tr>
+	</table>
+	<script>
+	$(document).ready(function() {
+		$("input").keyup(function(event) {
+			/* Act on the event */
+			var id 	= $(this).attr('id'),
+				tip = $(this).data('tip');
+			if ((reg = eval('Validate.' + id + '("' + $(this).val() + '")')) != true) {
+				$(tip).html(reg);
+			}else{
+				$(tip).html('');
+			}
+		});
+	});
+	</script>
+</body>
+</html>
